@@ -20,8 +20,8 @@ public class Calculator {
 	 */
 	double firstNumber;
 	double secondNumber;
-	String operation;
 	double result;
+	String operation;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -295,21 +295,21 @@ public class Calculator {
 		btnEqual.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String answer = null;
+				if (!txtDisplay.getText().equals(" ")) {
+					   secondNumber = Double.parseDouble(txtDisplay.getText());
+					}
 				switch (operation) {
 				case "+":
-					secondNumber = Double.parseDouble(txtDisplay.getText());
 					result = firstNumber + secondNumber;
 					answer = String.format("%.2f", result);
 					txtDisplay.setText(answer.replace(",", "."));
 					break;
 				case "X":
-					secondNumber = Double.parseDouble(txtDisplay.getText());
 					result = firstNumber * secondNumber;
 					answer = String.format("%.2f", result);
 					txtDisplay.setText(answer.replace(",", "."));
 					break;
 				case "-":
-					secondNumber = Double.parseDouble(txtDisplay.getText());
 					result = firstNumber - secondNumber;
 					answer = String.format("%.2f", result);
 					txtDisplay.setText(answer.replace(",", "."));
@@ -320,7 +320,6 @@ public class Calculator {
 					txtDisplay.setText(answer.replace(",", "."));
 					break;
 				case "/":
-					secondNumber = Double.parseDouble(txtDisplay.getText());
 					result = firstNumber / secondNumber;
 					answer = String.format("%.2f", result);
 					txtDisplay.setText(answer.replace(",", "."));
