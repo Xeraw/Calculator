@@ -11,17 +11,17 @@ import java.awt.event.ActionEvent;
 import javax.swing.SwingConstants;
 
 public class Calculator {
-
+	double firstNumber;
+	double secondNumber;
+	double result;
+	String operation;
 	private JFrame frame;
 	private JTextField txtDisplay;
 
 	/**
 	 * Launch the application.
 	 */
-	double firstNumber;
-	double secondNumber;
-	double result;
-	String operation;
+
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
