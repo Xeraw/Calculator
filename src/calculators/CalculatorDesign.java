@@ -7,62 +7,65 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 public class CalculatorDesign {
-
-	private static JFrame frame;
-	private static JTextField txtDisplay;
-
-
 	
-	/**
-	 * Initialize the contents of the frame.
-	 */
-	public static void initialize() {
+	private JFrame frame;
+	private JTextField txtDisplay;
+	
+	public CalculatorDesign () {
+		
+		this.setFrame(new JFrame("Calculator"));
+		this.getFrame().setBounds(100, 100, 350, 519);
+		this.getFrame().setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.getFrame().getContentPane().setLayout(null);
+		this.getFrame().setVisible(true);
 
-		setFrame(new JFrame("Calculator"));
-		getFrame().setBounds(100, 100, 350, 519);
-		getFrame().setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		getFrame().getContentPane().setLayout(null);
-		getFrame().setVisible(true);
+		this.setTxtDisplay(new JTextField());
+		this.getTxtDisplay().setFont(new Font("Tahoma", Font.BOLD, 14));
+		this.getTxtDisplay().setHorizontalAlignment(SwingConstants.RIGHT);
+		this.getTxtDisplay().setBounds(10, 20, 314, 58);
+		this.getFrame().getContentPane().add(getTxtDisplay());
+		this.getTxtDisplay().setColumns(10);
+		this.getTxtDisplay().setEditable(false);
+		
+	}
+	
+public CalculatorDesign (int x, int y) {
+		
+		this.setFrame(new JFrame("Calculator"));
+		this.getFrame().setBounds(100, 100, x, y);
+		this.getFrame().setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.getFrame().getContentPane().setLayout(null);
+		this.getFrame().setVisible(true);
 
-		setTxtDisplay(new JTextField());
-		getTxtDisplay().setFont(new Font("Tahoma", Font.BOLD, 14));
-		getTxtDisplay().setHorizontalAlignment(SwingConstants.RIGHT);
-		getTxtDisplay().setBounds(10, 20, 314, 58);
-		getFrame().getContentPane().add(getTxtDisplay());
-		getTxtDisplay().setColumns(10);
-		getTxtDisplay().setEditable(false);
-
+		this.setTxtDisplay(new JTextField());
+		this.getTxtDisplay().setFont(new Font("Tahoma", Font.BOLD, 14));
+		this.getTxtDisplay().setHorizontalAlignment(SwingConstants.RIGHT);
+		this.getTxtDisplay().setBounds(10, 20, 314, 58);
+		this.getFrame().getContentPane().add(getTxtDisplay());
+		this.getTxtDisplay().setColumns(10);
+		this.getTxtDisplay().setEditable(false);
+		
 	}
 
-	
-	/**
-	 * @return the frame
-	 */
-	public static JFrame getFrame() {
+	public JFrame getFrame() {
 		return frame;
 	}
 
-	/**
-	 * @param frame the frame to set
-	 */
-	public static void setFrame(JFrame frame) {
-		CalculatorDesign.frame = frame;
+	public void setFrame(JFrame frame) {
+		this.frame = frame;
 	}
 
-
-	/**
-	 * @return the txtDisplay
-	 */
-	public static JTextField getTxtDisplay() {
+	public JTextField getTxtDisplay() {
 		return txtDisplay;
 	}
 
-
-	/**
-	 * @param txtDisplay the txtDisplay to set
-	 */
-	public static void setTxtDisplay(JTextField txtDisplay) {
-		CalculatorDesign.txtDisplay = txtDisplay;
+	public void setTxtDisplay(JTextField txtDisplay) {
+		this.txtDisplay = txtDisplay;
 	}
+
+
+
+
+
 
 }

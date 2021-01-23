@@ -1,6 +1,8 @@
 package calculators;
 
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 
@@ -11,33 +13,75 @@ public class CalculatorButton {
 	static JButton addButton, multButton, clearButton, deleteButton, percentButton;
 	static JButton equalButton, divideButton, minusButton, signButton, dotButton;
 
+	private CalculatorDesign design;
+
+	public CalculatorButton(CalculatorDesign designParam) {
+		this.design = designParam;
+
+	}
 	/**
 	 * Create button number from 0 to 9and place them in frame.
 	 */
-	static void createNumberButton() {
+
+	public void createNumberButton() {
 
 		for (int i = 0; i < 10; i++) {
-			numberButton[i] = new JButton(String.valueOf(i));
-			numberButton[i].setFont(new Font("Tahoma", Font.BOLD, 20));
-			CalculatorDesign.getFrame().getContentPane().add(numberButton[i]);
-			// numberButton[i].addActionListener(ButtonFunction.actionPerformed(null));
-
+			JButton numberButton = new JButton(String.valueOf(i));
+			numberButton.setFont(new Font("Tahoma", Font.BOLD, 20));
+			design.getFrame().getContentPane().add(numberButton);
+			addNumberButtonListerner(numberButton, String.valueOf(i));
 			if (i == 0)
-				numberButton[i].setBounds(95, 395, 70, 70);
+				numberButton.setBounds(95, 395, 70, 70);
 			if (i == 1 || i == 4 || i == 7)
-				numberButton[i].setBounds(20, 345 - i * 25, 70, 70);
+				numberButton.setBounds(20, 345 - i * 25, 70, 70);
 			if (i == 2 || i == 5 || i == 8)
-				numberButton[i].setBounds(95, 345 - (i - 1) * 25, 70, 70);
+				numberButton.setBounds(95, 345 - (i - 1) * 25, 70, 70);
 			if (i == 3 || i == 6 || i == 9)
-				numberButton[i].setBounds(170, 345 - (i - 2) * 25, 70, 70);
+				numberButton.setBounds(170, 345 - (i - 2) * 25, 70, 70);
 		}
 
 	}
-/**
- * Create button and place in frame
- */
-	static void createFunctionButton() {
-	
+	private void addNumberButtonListerner(JButton numberButton, final String test) {
+
+		numberButton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				design.getTxtDisplay().setText(design.getTxtDisplay().getText().concat(test));
+
+			}
+		});
+
+	}
+private void addFunctionButtonListerner(final JButton functionButton) {
+		
+	functionButton.addActionListener(new ActionListener() {
+		
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			
+			if (functionButton.getText() == "%" || functionButton.getText() == "+" ||
+				functionButton.getText() == "-" || functionButton.getText() == "/" || functionButton.getText() == "X") {
+			
+			double firstNumber = Double.parseDouble(design.getTxtDisplay().getText());
+			String operation = functionButton.getText();
+			design.getTxtDisplay().setText("");
+		//	System.out.println(firstNumber + " " + operation);
+
+			if (functionButton.getText() == ".") {
+				
+			}
+			}
+			
+		}
+	});
+
+}
+	/**
+	 * Create button and place in frame
+	 */
+	public void createFunctionButton() {
+
 		addButton = new JButton("+");
 		multButton = new JButton("X");
 		clearButton = new JButton("C");
@@ -62,17 +106,18 @@ public class CalculatorButton {
 
 		for (int i = 0; i < 10; i++) {
 			functionButton[i].setFont(new Font("Tahoma", Font.BOLD, 20));
-			CalculatorDesign.getFrame().getContentPane().add(functionButton[i]);
-			
+			design.getFrame().getContentPane().add(functionButton[i]);
+
+			addFunctionButtonListerner(functionButton[i]);
+
 			if (i < 4)
-				functionButton[i].setBounds(20+i*75, 95, 70, 70);
+				functionButton[i].setBounds(20 + i * 75, 95, 70, 70);
 			if (i > 3 && i < 8)
-				functionButton[i].setBounds(245, 395-(i-4)*75, 70, 70);
+				functionButton[i].setBounds(245, 395 - (i - 4) * 75, 70, 70);
 			if (i == 8 || i == 9)
-				functionButton[i].setBounds(20+(i-8)*150, 395, 70, 70);
+				functionButton[i].setBounds(20 + (i - 8) * 150, 395, 70, 70);
 
 		}
 	}
 
 }
-

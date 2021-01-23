@@ -119,38 +119,8 @@ public class Calculator {
 
 		// ------------------ Row 4 -----------------------
 
-		final JButton btn9 = new JButton("9");
-		btn9.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				String enterNumber = txtDisplay.getText() + btn9.getText();
-				txtDisplay.setText(enterNumber);
-			}
-		});
-		btn9.setFont(new Font("Tahoma", Font.BOLD, 20));
-		btn9.setBounds(170, 170, 70, 70);
-		frame.getContentPane().add(btn9);
 
-		final JButton btn8 = new JButton("8");
-		btn8.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				String enterNumber = txtDisplay.getText() + btn8.getText();
-				txtDisplay.setText(enterNumber);
-			}
-		});
-		btn8.setFont(new Font("Tahoma", Font.BOLD, 20));
-		btn8.setBounds(95, 170, 70, 70);
-		frame.getContentPane().add(btn8);
 
-		final JButton btn7 = new JButton("7");
-		btn7.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				String enterNumber = txtDisplay.getText() + btn7.getText();
-				txtDisplay.setText(enterNumber);
-			}
-		});
-		btn7.setFont(new Font("Tahoma", Font.BOLD, 20));
-		btn7.setBounds(20, 170, 70, 70);
-		frame.getContentPane().add(btn7);
 
 		final JButton btnMultiply = new JButton("X");
 		btnMultiply.addActionListener(new ActionListener() {
@@ -166,43 +136,7 @@ public class Calculator {
 
 		// ------------------ Row 3 -----------------------
 
-		final JButton btn6 = new JButton("6");
-		btn6.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				String enterNumber = txtDisplay.getText() + btn6.getText();
-				txtDisplay.setText(enterNumber);
-			}
-		});
-		btn6.setFont(new Font("Tahoma", Font.BOLD, 20));
-		btn6.setBounds(170, 245, 70, 70);
-		frame.getContentPane().add(btn6);
-
-		final JButton btn5 = new JButton("5");
-		btn5.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				String enterNumber = txtDisplay.getText() + btn5.getText();
-				txtDisplay.setText(enterNumber);
-			}
-		});
-		btn5.setFont(new Font("Tahoma", Font.BOLD, 20));
-		btn5.setBounds(95, 245, 70, 70);
-		frame.getContentPane().add(btn5);
-
-		final JButton btn4 = new JButton("4");
-		btn4.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				String enterNumber = txtDisplay.getText() + btn4.getText();
-				txtDisplay.setText(enterNumber);
-			}
-		});
-		btn4.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		btn4.setFont(new Font("Tahoma", Font.BOLD, 20));
-		btn4.setBounds(20, 245, 70, 70);
-		frame.getContentPane().add(btn4);
-
+		
 		final JButton btnMinus = new JButton("-");
 		btnMinus.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -217,38 +151,8 @@ public class Calculator {
 
 		// ------------------ Row 2 -----------------------
 
-		final JButton btn3 = new JButton("3");
-		btn3.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				String enterNumber = txtDisplay.getText() + btn3.getText();
-				txtDisplay.setText(enterNumber);
-			}
-		});
-		btn3.setFont(new Font("Tahoma", Font.BOLD, 20));
-		btn3.setBounds(170, 320, 70, 70);
-		frame.getContentPane().add(btn3);
 
-		final JButton btn2 = new JButton("2");
-		btn2.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				String enterNumber = txtDisplay.getText() + btn2.getText();
-				txtDisplay.setText(enterNumber);
-			}
-		});
-		btn2.setFont(new Font("Tahoma", Font.BOLD, 20));
-		btn2.setBounds(95, 320, 70, 70);
-		frame.getContentPane().add(btn2);
 
-		final JButton btn1 = new JButton("1");
-		btn1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				String enterNumber = txtDisplay.getText() + btn1.getText();
-				txtDisplay.setText(enterNumber);
-			}
-		});
-		btn1.setFont(new Font("Tahoma", Font.BOLD, 20));
-		btn1.setBounds(20, 320, 70, 70);
-		frame.getContentPane().add(btn1);
 
 		final JButton btnPlus = new JButton("+");
 		btnPlus.addActionListener(new ActionListener() {
@@ -264,16 +168,7 @@ public class Calculator {
 
 		// ------------------ Row 1 -----------------------
 
-		final JButton btn0 = new JButton("0");
-		btn0.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				String enterNumber = txtDisplay.getText() + btn0.getText();
-				txtDisplay.setText(enterNumber);
-			}
-		});
-		btn0.setFont(new Font("Tahoma", Font.BOLD, 20));
-		btn0.setBounds(95, 395, 70, 70);
-		frame.getContentPane().add(btn0);
+		
 
 		final JButton btnDot = new JButton(".");
 		btnDot.addActionListener(new ActionListener() {
