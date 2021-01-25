@@ -7,12 +7,12 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 public class CalculatorDesign {
-	
+
 	private JFrame frame;
 	private JTextField txtDisplay;
-	
-	public CalculatorDesign () {
-		
+
+	public CalculatorDesign() {
+
 		this.setFrame(new JFrame("Calculator"));
 		this.getFrame().setBounds(100, 100, 350, 519);
 		this.getFrame().setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -26,11 +26,11 @@ public class CalculatorDesign {
 		this.getFrame().getContentPane().add(getTxtDisplay());
 		this.getTxtDisplay().setColumns(10);
 		this.getTxtDisplay().setEditable(false);
-		
+
 	}
-	
-public CalculatorDesign (int x, int y) {
-		
+
+	public CalculatorDesign(int x, int y) {
+
 		this.setFrame(new JFrame("Calculator"));
 		this.getFrame().setBounds(100, 100, x, y);
 		this.getFrame().setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -44,7 +44,7 @@ public CalculatorDesign (int x, int y) {
 		this.getFrame().getContentPane().add(getTxtDisplay());
 		this.getTxtDisplay().setColumns(10);
 		this.getTxtDisplay().setEditable(false);
-		
+
 	}
 
 	public JFrame getFrame() {
@@ -62,10 +62,5 @@ public CalculatorDesign (int x, int y) {
 	public void setTxtDisplay(JTextField txtDisplay) {
 		this.txtDisplay = txtDisplay;
 	}
-
-
-
-
-
 
 }
