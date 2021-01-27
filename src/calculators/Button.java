@@ -10,7 +10,7 @@ public class Button {
 
 	private Design design;
 	private double firstNumber = 0;
-	private double secondNumber = 0;
+	private double secondNumber;
 	private double result = 0;
 	private String operation;
 	private String[][] buttonName = { { "%", "C", "<", "/" }, { "7", "8", "9", "X" }, { "4", "5", "6", "-" },
@@ -30,8 +30,8 @@ public class Button {
 				JButton buttons = new JButton(buttonName[i][j]);
 				buttons.setFont(new Font("Tahoma", Font.BOLD, 20));
 				buttons.setBounds(20 + j * 75, 95 + i * 75, 70, 70);
+				addButtonFunction(buttons, String.valueOf(buttonName[i][j]));
 				design.getFrame().getContentPane().add(buttons);
-				createButtonFunction(buttons, String.valueOf(buttonName[i][j]));
 
 			}
 		}
@@ -61,100 +61,157 @@ public class Button {
 	 * @param buttons
 	 * @param value   value of the array [i][j]
 	 */
-	private void createButtonFunction(final JButton buttons, final String value) {
+	private void addButtonFunction(final JButton buttons, final String value) {
 
+		if (isNumeric(value)) {
+
+			addNumericButtonActionListener(buttons, value);
+
+		}
+		if (buttons.getText() == "%" || buttons.getText() == "+" || buttons.getText() == "-" || buttons.getText() == "/"
+				|| buttons.getText() == "X") {
+
+			addOperationButtonActionListener(buttons);
+
+		} else {
+			switch (value) {
+			case "C":
+				addCButtonActionListener(buttons);
+				break;
+			case "<":
+				addDelButtonActionListener(buttons);
+				break;
+			case "±":
+				addPosNegButtonActionListener(buttons);
+				break;
+			case ".":
+				addDotButtonActionListener(buttons);
+				break;
+			case "=":
+				addEqualButtonActionListener(buttons);
+				break;
+			}
+		}
+	}
+
+	private void addCButtonActionListener(JButton buttons) {
 		buttons.addActionListener(new ActionListener() {
 
-			@Override
 			public void actionPerformed(ActionEvent e) {
+				design.getTxtDisplay().setText("");
+				firstNumber = 0;
+				secondNumber = 0;
+			}
+		});
+	}
 
-				if (isNumeric(buttons.getText()))
-					design.getTxtDisplay().setText(design.getTxtDisplay().getText().concat(value));
-				if (!isNumeric(buttons.getText()))
+	private void addEqualButtonActionListener(JButton buttons) {
+		buttons.addActionListener(new ActionListener() {
 
-					if (buttons.getText() == "%" || buttons.getText() == "+" || buttons.getText() == "-"
-							|| buttons.getText() == "/" || buttons.getText() == "X") {
-
-						firstNumber = Double.parseDouble(design.getTxtDisplay().getText());
-						operation = buttons.getText();
-						design.getTxtDisplay().setText("");
-					}
-
-				switch (buttons.getText()) {
-				case "C":
-					design.getTxtDisplay().setText("");
-					firstNumber = 0;
-					secondNumber = 0;
+			public void actionPerformed(ActionEvent e) {
+				if (!design.getTxtDisplay().getText().equals("")) {
+					secondNumber = Double.parseDouble(design.getTxtDisplay().getText());
+				}
+				switch (operation) {
+				case "+":
+					result = firstNumber + secondNumber;
+					displayResult();
 					break;
-				case "<":
-					String erase = null;
-
-					if (design.getTxtDisplay().getText().length() > 0) {
-
-						StringBuilder text = new StringBuilder(design.getTxtDisplay().getText());
-						text.deleteCharAt(design.getTxtDisplay().getText().length() - 1);
-						erase = text.toString();
-						design.getTxtDisplay().setText(erase);
-					}
+				case "X":
+					result = firstNumber * secondNumber;
+					displayResult();
 					break;
-
-				case "±":
-					double ops = Double.parseDouble(design.getTxtDisplay().getText());
-					ops *= (-1);
-					design.getTxtDisplay().setText(String.valueOf(ops));
+				case "-":
+					result = firstNumber - secondNumber;
+					displayResult();
 					break;
-
-				case ".":
-					String enterNumber = design.getTxtDisplay().getText();
-
-					if (enterNumber.contains(".")) {
-						return;
-
-					} else {
-						enterNumber += ".";
-						design.getTxtDisplay().setText(enterNumber);
-					}
+				case "%":
+					result = firstNumber / 100;
+					displayResult();
 					break;
-				case "=":
-					String answer = null;
-					if (!design.getTxtDisplay().getText().equals("")) {
-						secondNumber = Double.parseDouble(design.getTxtDisplay().getText());
-					}
-					switch (operation) {
-					case "+":
-						result = firstNumber + secondNumber;
-						answer = String.format("%.2f", result);
-						design.getTxtDisplay().setText(answer.replace(",", "."));
-						break;
-					case "X":
-						result = firstNumber * secondNumber;
-						answer = String.format("%.2f", result);
-						design.getTxtDisplay().setText(answer.replace(",", "."));
-						break;
-					case "-":
-						result = firstNumber - secondNumber;
-						answer = String.format("%.2f", result);
-						design.getTxtDisplay().setText(answer.replace(",", "."));
-						break;
-					case "%":
-						result = firstNumber / 100;
-						answer = String.format("%.2f", result);
-						design.getTxtDisplay().setText(answer.replace(",", "."));
-						break;
-					case "/":
-						result = firstNumber / secondNumber;
-						answer = String.format("%.2f", result);
-						design.getTxtDisplay().setText(answer.replace(",", "."));
-						break;
-					default:
-						return;
-					}
+				case "/":
+					result = firstNumber / secondNumber;
+					displayResult();
 					break;
-
+				default:
+					return;
 				}
 
 			}
-
 		});
 	}
+
+	private void addNumericButtonActionListener(JButton buttons, final String value) {
+
+		buttons.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				design.getTxtDisplay().setText(design.getTxtDisplay().getText().concat(value));
+
+			}
+		});
+	}
+
+	private void addOperationButtonActionListener(final JButton buttons) {
+		buttons.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				firstNumber = Double.parseDouble(design.getTxtDisplay().getText());
+				operation = buttons.getText();
+				design.getTxtDisplay().setText("");
+			}
+		});
+	}
+
+	private void addPosNegButtonActionListener(final JButton buttons) {
+		buttons.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				double ops = Double.parseDouble(design.getTxtDisplay().getText());
+				ops *= (-1);
+				design.getTxtDisplay().setText(String.valueOf(ops));
+			}
+		});
+	}
+
+	private void addDotButtonActionListener(final JButton buttons) {
+		buttons.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String enterNumber = design.getTxtDisplay().getText();
+
+				if (enterNumber.contains(".")) {
+					return;
+
+				} else {
+					enterNumber += ".";
+					design.getTxtDisplay().setText(enterNumber);
+				}
+			}
+		});
+	}
+
+	private void addDelButtonActionListener(final JButton buttons) {
+		buttons.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String erase = null;
+
+				if (design.getTxtDisplay().getText().length() > 0) {
+
+					StringBuilder text = new StringBuilder(design.getTxtDisplay().getText());
+					text.deleteCharAt(design.getTxtDisplay().getText().length() - 1);
+					erase = text.toString();
+					design.getTxtDisplay().setText(erase);
+				}
+			}
+		});
+	}
+
+	private void displayResult() {
+		String answer;
+		answer = String.format("%.2f", result);
+		design.getTxtDisplay().setText(answer.replace(",", "."));
+	}
+
 }
