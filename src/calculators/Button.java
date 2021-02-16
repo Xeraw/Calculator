@@ -115,27 +115,25 @@ public class Button {
 				switch (operation) {
 				case "+":
 					result = firstNumber + secondNumber;
-					displayResult();
 					break;
 				case "X":
 					result = firstNumber * secondNumber;
-					displayResult();
 					break;
 				case "-":
 					result = firstNumber - secondNumber;
-					displayResult();
 					break;
 				case "%":
 					result = firstNumber / 100;
-					displayResult();
 					break;
 				case "/":
 					result = firstNumber / secondNumber;
-					displayResult();
+				
 					break;
 				default:
 					return;
 				}
+				firstNumber = result;
+				displayResult();
 
 			}
 		});

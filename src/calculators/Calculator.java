@@ -7,7 +7,8 @@ public class Calculator {
 			Design design = new Design();
 			Button bouton = new Button(design);
 			bouton.createButton();
-			
+			design.getFrame().setVisible(true);
+
 			
 		}
 

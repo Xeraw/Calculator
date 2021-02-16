@@ -17,8 +17,6 @@ public class Design {
 		this.getFrame().setBounds(100, 100, 350, 519);
 		this.getFrame().setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.getFrame().getContentPane().setLayout(null);
-		this.getFrame().setVisible(true);
-
 		this.setTxtDisplay(new JTextField());
 		this.getTxtDisplay().setFont(new Font("Tahoma", Font.BOLD, 14));
 		this.getTxtDisplay().setHorizontalAlignment(SwingConstants.RIGHT);
